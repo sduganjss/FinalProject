@@ -68,6 +68,7 @@ class QuoteGame {
     //and updates the user's array indicating their quote in progress
     replaceAllChars = (clickIndex, keyEntered) => {
         let startIndex = 0;
+        let keyUpper = keyEntered.toString().toUpperCase();
         //get the scrambled char they are replacing
         let keyScrambled = this.strScrambledQuote[clickIndex];
         
@@ -76,17 +77,17 @@ class QuoteGame {
         let replacementIndex = this.strScrambledQuote.indexOf(keyScrambled, startIndex);
         
         //set the pressed key in the user array
-        this.arrUserQuote[clickIndex] = keyEntered;
+        this.arrUserQuote[clickIndex] = keyUpper;
 
         //now find any other possible replacements and add their value to the input boxes
         while (replacementIndex !== -1) {
             let replacementEl = document.getElementById('member-' + replacementIndex);
   
             //add key to input box
-            replacementEl.value = keyEntered;
+            replacementEl.value = keyUpper;
             
             //set the user's array matching index to the new key pressed
-            this.arrUserQuote[replacementIndex] = keyEntered;
+            this.arrUserQuote[replacementIndex] = keyUpper;
 
             //find the next one
             replacementIndex = this.strScrambledQuote.indexOf(keyScrambled, replacementIndex + 1);
